@@ -8,20 +8,23 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 @Service
 @AllArgsConstructor
-public class SaveCustomerUseCase implements Function<CustomerDTO, Mono<CustomerDTO>> {
+public class UpdateCustomerUseCase implements BiFunction<String, CustomerDTO, Mono<CustomerDTO>> {
 
     private final ICustomerRepository customerRepository;
     private final ModelMapper modelMapper;
 
     @Override
-    public Mono<CustomerDTO> apply(CustomerDTO customerDTO) {
-        return this.customerRepository.save(modelMapper.map(customerDTO, Customer.class))
-                .switchIfEmpty(Mono.empty())
-                .map(customer -> modelMapper.map(customer, CustomerDTO.class))
+    public Mono<CustomerDTO> apply(String id, CustomerDTO customerDTO) {
+        return customerRepository.findById(id)
+                .switchIfEmpty(Mono.error(new Throwable("Not found")))
+                .flatMap(customer -> {
+                    customerDTO.setId(customer.getId());
+                    return customerRepository.save(modelMapper.map(customerDTO, Customer.class));
+                }).map(customer -> modelMapper.map(customer, CustomerDTO.class))
                 .onErrorResume(Mono::error);
     }
 }
