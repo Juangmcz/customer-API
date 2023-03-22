@@ -40,8 +40,7 @@ class DeleteCustomerUseCaseTest {
                         "Sr",
                         "3128986514",
                         List.of()
-                        )
-        );
+        ));
 
         Mockito.when(mockedRepository.findById(ArgumentMatchers.anyString())).thenReturn(customer);
 
