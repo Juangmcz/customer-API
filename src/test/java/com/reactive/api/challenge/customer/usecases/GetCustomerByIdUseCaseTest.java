@@ -54,7 +54,7 @@ class GetCustomerByIdUseCaseTest {
 
     @Test
     @DisplayName("getCustomerByWrongId_NonSuccess")
-    void getCustomerStudentByWrongId() {
+    void getCustomerByWrongId() {
 
         Mockito.when(mockedRepository.findById(ArgumentMatchers.anyString())).thenReturn(Mono.empty());
 
