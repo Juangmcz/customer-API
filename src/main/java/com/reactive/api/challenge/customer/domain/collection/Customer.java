@@ -1,5 +1,6 @@
 package com.reactive.api.challenge.customer.domain.collection;
 
+import com.reactive.api.challenge.customer.domain.appointment.Appointment;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -25,5 +28,6 @@ public class Customer {
     private String prefix;
     @NotNull(message = "The cellphone cannot be null")
     private String cell;
+    private List<Appointment> appointments = new ArrayList<>();
 
 }

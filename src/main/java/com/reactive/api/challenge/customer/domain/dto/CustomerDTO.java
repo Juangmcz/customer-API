@@ -1,9 +1,12 @@
 package com.reactive.api.challenge.customer.domain.dto;
 
+import com.reactive.api.challenge.customer.domain.appointment.Appointment;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +23,5 @@ public class CustomerDTO {
     private String prefix;
     @NotNull(message = "The cellphone cannot be null")
     private String cell;
+    private List<Appointment> appointments;
 }
