@@ -30,4 +30,10 @@ public class Customer {
     private String cell;
     private List<Appointment> appointments = new ArrayList<>();
 
+    public Customer(String name, String lastName, String prefix, String cell) {
+        this.name = name;
+        this.lastName = lastName;
+        this.prefix = prefix;
+        this.cell = cell;
+    }
 }
