@@ -48,7 +48,8 @@ class SaveCustomerUseCaseTest {
         var response = saveCustomerUseCase.apply(modelMapper.map(customer, CustomerDTO.class));
 
         StepVerifier.create(response)
-                .expectNextCount(1)
+                .expectNext(modelMapper.map(customer, CustomerDTO.class))
+                .expectNextCount(0)
                 .verifyComplete();
 
         Mockito.verify(mockedRepository).save(ArgumentMatchers.any(Customer.class));
