@@ -10,6 +10,12 @@ public class Appointment {
     private String id;
     private String date;
     private String barberName;
-    private Boolean customerArrived;
-    private Boolean isFulFilled;
+    private boolean isScheduled;
+
+    public Appointment(String id, String date, String barberName) {
+        this.id = id;
+        this.date = date;
+        this.barberName = barberName;
+        this.isScheduled = false;
+    }
 }
